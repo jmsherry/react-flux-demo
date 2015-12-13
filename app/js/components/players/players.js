@@ -2,6 +2,7 @@ import React from 'react';
 import PlayersCss from './players.scss';
 import Player from './player.js';
 import AppControls from '../app-controls/app-controls';
+import FrameCounter from '../frame-counter/frame-counter';
 import AppStore from '../../stores/app-store';
 
 
@@ -32,6 +33,7 @@ export default class Players extends React.Component {
               <Player player={this.state.players[0]} />
           </div>
           <div className="col-sm-2">
+            <FrameCounter />
             <AppControls />
           </div>
           <div className="col-sm-5">

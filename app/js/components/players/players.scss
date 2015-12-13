@@ -9,7 +9,12 @@
 }
 
 .score {
+  display: block;
   font-weight: bold;
   font-size: 5em;
   color: #000;
+}
+
+.avatar {
+  width: 400px;
 }

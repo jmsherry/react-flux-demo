@@ -18,11 +18,15 @@ var game_over = false;
 
 var players = [{
   name: "Stephen Hendry",
+  image: 'http://i2.dailyrecord.co.uk/incoming/article874158.ece/ALTERNATES/s615/stephen-hendry-image-2-980022172.jpg',
   score: 0,
+  frames: 0,
   active: true
 }, {
   name: "Steve Davis",
+  image: "http://waytofamous.com/images/steve-davis-09.jpg",
   score: 0,
+  frames: 0,
   active: false
 }];
 
@@ -156,6 +160,13 @@ const _endGame = () => {
   alert('Game Over');
 }
 
+const _endFrame = (player) => {
+  activePlayer.score = 0;
+  inactivePlayer.score = 0;
+  targetBall = 'red';
+  player.frames += 1;
+}
+
 
 const AppStore = Object.assign(EventEmitter.prototype, {
     emitChange() {
@@ -205,6 +216,9 @@ const AppStore = Object.assign(EventEmitter.prototype, {
         case 'CHANGE_PLAYER':
           _changePlayer();
           break;
+          case 'END_FRAME':
+            _endFrame();
+            break;
         case 'END_GAME':
           _endGame();
           break;
