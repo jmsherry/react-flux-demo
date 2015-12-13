@@ -5,7 +5,7 @@ import { EventEmitter } from 'events';
 const CHANGE_EVENT = "CHANGE";
 
 var balls = {
-  red: 15,
+  red: 2,
   yellow: 1,
   green: 1,
   brown: 1,
@@ -16,46 +16,96 @@ var balls = {
 
 var players = [{
   name: "Stephen Hendry",
-  score: 0
+  score: 0,
+  active: true
 }, {
   name: "Steve Davis",
-  score: 0
+  score: 0,
+  active: false
 }];
+
+var targetBall = 'red';
+
 
 
 var _playerIndex = 0;
 var _nonPlayerIndex = 1;
 var activePlayer = players[_playerIndex];
+    activePlayer.active = true;
 var inactivePlayer = players[_nonPlayerIndex];
 
 
 const _potBall = (ball) => {
   console.log('_potBall', arguments);
-  console.log(activePlayer);
   switch (ball) {
     case 'red':
       activePlayer.score += 1;
+      balls.red -=1;
+      if(balls.red === 0){
+        targetBall = 'yellow';
+      } else {
+        targetBall = 'colour';
+      }
       break;
     case 'yellow':
       activePlayer.score += 2;
+      if(!balls.red){
+        balls.yellow = 0;
+        targetBall = 'green';
+      } else {
+        targetBall = 'red';
+      }
       break;
     case 'green':
       activePlayer.score += 3;
+      if(!balls.yellow && !balls.red){
+        balls.green = 0;
+        targetBall = 'brown';
+      } else {
+        targetBall = 'red';
+      }
       break;
     case 'brown':
       activePlayer.score += 4;
+      if(!balls.green && !balls.red){
+        balls.brown = 0;
+        targetBall = 'blue';
+      } else {
+        targetBall = 'red';
+      }
       break;
     case 'blue':
       activePlayer.score += 5;
+      if(!balls.brown && !balls.red){
+        balls.blue = 0;
+        targetBall = 'pink';
+      } else {
+        targetBall = 'red';
+      }
       break;
     case 'pink':
       activePlayer.score += 6;
+      if(!balls.blue && !balls.red){
+        balls.pink = 0;
+        targetBall = 'black';
+      } else {
+        targetBall = 'red';
+      }
       break;
     case 'black':
       activePlayer.score += 7;
+      if(!balls.pink && !balls.red){
+        balls.black = 0;
+        return _endGame();
+      } else {
+        targetBall = 'red';
+      }
       break;
   }
+
   console.log(activePlayer);
+  console.log(balls);
+  console.log(targetBall);
 }
 
 const _foul = (foul) => {
@@ -82,6 +132,7 @@ const _foul = (foul) => {
 const _changePlayer = () => {
   console.log('_changePlayer');
   inactivePlayer = players[_playerIndex];
+  inactivePlayer.active = false;
   switch(_playerIndex){
     case 0:
     _playerIndex = 1;
@@ -91,7 +142,14 @@ const _changePlayer = () => {
     break;
   }
   activePlayer = players[_playerIndex];
+  activePlayer.active = true;
+  targetBall = 'red';
+
   console.log('activePlayer', activePlayer);
+}
+
+const _endGame = () => {
+  alert('Game Over');
 }
 
 
@@ -107,6 +165,12 @@ const AppStore = Object.assign(EventEmitter.prototype, {
     },
     getPlayers: () => {
       return {players: players};
+    },
+    getCurrentPlayer: () => {
+      return {player: activePlayer};
+    },
+    getTargetBall: () => {
+      return {targetBall: targetBall};
     },
     setPlayers: (players) => {
       players = [
@@ -125,16 +189,18 @@ const AppStore = Object.assign(EventEmitter.prototype, {
       console.log('DISPATCHER', action);
       switch (action.actionType) {
         case 'POT_BALL':
-          _potBall(action.ball)
+          _potBall(action.ball);
           break;
         case 'FOUL':
-          _foul(action.penalty)
+          _foul(action.penalty);
+          _changePlayer();
           break;
         case 'CHANGE_PLAYER':
-          _changePlayer()
+          _changePlayer();
           break;
-        default:
-
+        case 'END_GAME':
+          _endGame();
+          break;
       }
       AppStore.emitChange();
     })

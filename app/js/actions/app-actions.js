@@ -14,10 +14,16 @@ export default {
       actionType: AppConstants.FOUL, penalty
     });
   },
-  changePlayer (){
+  changePlayer(){
     console.log('changePlayer');
     dispatch({
       actionType: AppConstants.CHANGE_PLAYER
+    });
+  },
+  endGame(){
+    console.log('endGame');
+    dispatch({
+      actionType: AppConstants.END_GAME
     });
   }
 };

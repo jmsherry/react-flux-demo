@@ -1,8 +1,15 @@
 .player {
   text-align: center;
+  color: #999;
+  &.active {
+    h1 {
+      color: #EC971F;
+    }
+  }
 }
 
 .score {
   font-weight: bold;
   font-size: 5em;
+  color: #000;
 }

@@ -16,10 +16,10 @@ export default class Players extends React.Component {
     this._onChange = this._onChange.bind(this);
   }
   componentWillMount(){
-    AppStore.addChangeListener(this._onChange)
+    AppStore.addChangeListener(this._onChange);
   }
   componentWillUnmount(){
-    AppStore.removeChangeListener(this._onChange)
+    AppStore.removeChangeListener(this._onChange);
   }
   _onChange(){
     this.setState(players);

@@ -28,7 +28,8 @@ export default class Balls extends React.Component {
 
           <button className="btn btn-block btn-primary"
           onClick={AppActions.changePlayer.bind(null)}>Change Player</button>
-          <button className="btn btn-block btn-warning end-game">End Game</button>
+          <button className="btn btn-block btn-warning end-game"
+          onClick={AppActions.endGame.bind(null)}>End Game</button>
         </div>
     );
   }
