@@ -24,13 +24,15 @@ var players = [{
   image: 'http://i2.dailyrecord.co.uk/incoming/article874158.ece/ALTERNATES/s615/stephen-hendry-image-2-980022172.jpg',
   score: 0,
   frames: 0,
-  active: true
+  active: true,
+  won: false
 }, {
   name: "Steve Davis",
   image: "http://waytofamous.com/images/steve-davis-09.jpg",
   score: 0,
   frames: 0,
-  active: false
+  active: false,
+  won: false
 }];
 
 var targetBall = 'red';
@@ -158,7 +160,7 @@ const _changePlayer = () => {
   console.log('activePlayer', activePlayer);
 }
 
-const _endGame = () => {
+const _endGame = (player) => {
   game_over = true;
   alert('Game Over');
 }

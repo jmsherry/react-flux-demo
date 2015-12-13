@@ -6,6 +6,9 @@ export default class Scorer extends React.Component {
   render(){
     return (
       <div>
+        <div className="row">
+          <h1 className="main-title">Snooker Scorer</h1>
+        </div>
         <Balls />
         <Players />
       </div>
