@@ -1,0 +1,14 @@
+body {
+  background-image: url(./../images/snooker.png);
+}
+
+.container {
+  background-color: rgba(225 , 225, 225, 0.8);
+  border:3px solid #000;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top:30px;
+  .main-title {
+    text-align: center;
+  }
+}

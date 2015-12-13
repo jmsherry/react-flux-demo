@@ -1,0 +1,31 @@
+.balls {
+  text-align: center;
+}
+.ball {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  border: none;
+  margin: 5px;
+  &.red {
+    background-color: red;
+  }
+  &.yellow {
+    background-color: yellow;
+  }
+  &.green {
+    background-color: green;
+  }
+  &.brown {
+    background-color: brown;
+  }
+  &.blue {
+    background-color: blue;
+  }
+  &.pink {
+    background-color: pink;
+  }
+  &.black {
+    background-color: black;
+  }
+}
