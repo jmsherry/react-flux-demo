@@ -16,6 +16,9 @@ var balls = {
 
 var game_over = false;
 
+var total_frames = 15;
+var frame_target = Math.floor(total_frames / 2);
+
 var players = [{
   name: "Stephen Hendry",
   image: 'http://i2.dailyrecord.co.uk/incoming/article874158.ece/ALTERNATES/s615/stephen-hendry-image-2-980022172.jpg',
@@ -160,11 +163,11 @@ const _endGame = () => {
   alert('Game Over');
 }
 
-const _endFrame = (player) => {
+const _endFrame = (playerid) => {
   activePlayer.score = 0;
   inactivePlayer.score = 0;
   targetBall = 'red';
-  player.frames += 1;
+  players[playerid].frames += 1;
 }
 
 
@@ -217,7 +220,7 @@ const AppStore = Object.assign(EventEmitter.prototype, {
           _changePlayer();
           break;
           case 'END_FRAME':
-            _endFrame();
+            _endFrame(action.playerid);
             break;
         case 'END_GAME':
           _endGame();

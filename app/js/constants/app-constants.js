@@ -2,5 +2,6 @@ export default {
   POT_BALL: "POT_BALL",
   FOUL: "FOUL",
   CHANGE_PLAYER: "CHANGE_PLAYER",
+  END_FRAME:"END_FRAME",
   END_GAME:"END_GAME"
 }

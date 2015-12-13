@@ -28,6 +28,21 @@ export default class Balls extends React.Component {
 
           <button className="btn btn-block btn-primary"
           onClick={AppActions.changePlayer.bind(null)}>Change Player</button>
+
+          <p className="ctrls-section-heading">Frame</p>
+          <button className="btn btn-block btn-success"
+          onClick={AppActions.endFrame.bind(null, 0)}>
+            <i className="fa fa-arrow-left"></i>
+            <span className="sr-only">Win Frame</span>
+          </button>
+
+          <button className="btn btn-block btn-success"
+          onClick={AppActions.endFrame.bind(null, 1)}>
+            <i className="fa fa-arrow-right"></i>
+            <span className="sr-only">Win Frame</span>
+          </button>
+
+          <p className="ctrls-section-heading">Match</p>
           <button className="btn btn-block btn-warning end-game"
           onClick={AppActions.endGame.bind(null)}>End Game</button>
         </div>

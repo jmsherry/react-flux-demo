@@ -20,6 +20,12 @@ export default {
       actionType: AppConstants.CHANGE_PLAYER
     });
   },
+  endFrame(playerid){
+    console.log('endFrame');
+    dispatch({
+      actionType: AppConstants.END_FRAME, playerid
+    });
+  },
   endGame(){
     console.log('endGame');
     dispatch({
