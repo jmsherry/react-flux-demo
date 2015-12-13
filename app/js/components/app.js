@@ -1,7 +1,6 @@
 import React from 'react';
+import { RouteHandler } from 'react-router';
 import Store from '../stores/app-store';
-import Balls from './balls/balls';
-import Players from './players/players';
 
 export default class App extends React.Component {
   render(){
@@ -10,8 +9,7 @@ export default class App extends React.Component {
         <div className="row">
           <h1 className="main-title">Snooker Scorer</h1>
         </div>
-        <Balls />
-        <Players />
+        {this.props.children}
       </div>
     );
   }
