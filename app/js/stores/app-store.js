@@ -14,6 +14,8 @@ var balls = {
   black: 1
 };
 
+var game_over = false;
+
 var players = [{
   name: "Stephen Hendry",
   score: 0,
@@ -36,6 +38,7 @@ var inactivePlayer = players[_nonPlayerIndex];
 
 
 const _potBall = (ball) => {
+
   console.log('_potBall', arguments);
   switch (ball) {
     case 'red':
@@ -149,6 +152,7 @@ const _changePlayer = () => {
 }
 
 const _endGame = () => {
+  game_over = true;
   alert('Game Over');
 }
 
@@ -187,6 +191,9 @@ const AppStore = Object.assign(EventEmitter.prototype, {
     },
     dispatcherIndex: register(function(action) {
       console.log('DISPATCHER', action);
+      if(game_over){
+        return;
+      }
       switch (action.actionType) {
         case 'POT_BALL':
           _potBall(action.ball);
